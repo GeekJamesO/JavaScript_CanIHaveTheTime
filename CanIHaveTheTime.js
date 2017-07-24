@@ -1,50 +1,47 @@
-var HOUR = 8;
-var MINUTE = 50;
-var PERIOD = "AM";
+var d = new Date();
+var HOUR = d.getHours();
+var MINUTE = d.getMinutes();
 
+console.log("24 hour clock:" + HOUR + ":" + MINUTE);
+var Front = "";
 //Give the above values, give the approximate time.
 //This is a sample of how to use if then else.
-Console.log("It's ");
-if (MINUTE == 0) { Console.log("exactly ");  }
-else if (MINUTE == 5) { Console.log("5 after ");  }
-else if (MINUTE == 10) { Console.log("10 after ");  }
-else if (MINUTE == 15) { Console.log("a quarter after ");  }
-else if (MINUTE == 20) { Console.log("20 after ");  }
-else if (MINUTE == 30) { Console.log("half past ");  }
-else if (MINUTE == 40) { Console.log("20 before "); HOUR--;  }
-else if (MINUTE == 45) { Console.log("a quarter before "); HOUR--;  }
-else if (MINUTE == 50) { Console.log("10 before "); HOUR--;  }
-else if (MINUTE == 55) { Console.log("5 before "); HOUR--;  }
-else if (MINUTE >   0 && MINUTE < 30) { Console.log("just after ");  }
-else if (MINUTE >  30 && MINUTE < 60) { Console.log("before "); HOUR--; }
-else console.log("confusing '" + MINUTE + "' for minutes ");
+if (MINUTE == 0) { front = "It's exactly ";  }
+else if (MINUTE == 5) { front = "It's 5 after ";  }
+else if (MINUTE == 10) { front = "It's 10 after ";  }
+else if (MINUTE == 15) { front = "It's a quarter after ";  }
+else if (MINUTE == 20) { front = "It's 20 after ";  }
+else if (MINUTE == 30) { front = "It's half past ";  }
+else if (MINUTE == 40) { front = "It's 20 before "; HOUR++;  }
+else if (MINUTE == 45) { front = "It's a quarter before "; HOUR++;  }
+else if (MINUTE == 50) { front = "It's 10 before "; HOUR++;  }
+else if (MINUTE == 55) { front = "It's 5 before "; HOUR++;  }
+else if (MINUTE >   0 && MINUTE < 30) { front = "It's just after ";  }
+else if (MINUTE >  30 && MINUTE < 60) { front = "It's a little before "; HOUR++; }
+else front = "It's confusing '" + MINUTE + "' for minutes ";
 
-//Correct for decrement from 1 oclock
 if (HOUR == 0)  {
-    if (PERIOD == "AM") {
-        PERIOD = "PM";
+        Period = "AM";
         HOUR = 12;
     }
-    else {
-        PERIOD = "AM"
-        HOUR = 12;
-    }
-}
-
-//validate and print hour.
-if (HOUR >= 1 || HOUR <= 12) {
-    console.log("" + HOUR); 
+if (HOUR > 0 && HOUR <= 12  ) {
+    Period = "AM";
 }
 else {
-    console.log("Say what? Hour is '" + HOUR + "'");
-} 
+  HOUR -= 12;
+  Period = "PM";
+}
 
-if (PERIOD === "AM") {  
-    console.log(' in the morning'); 
+
+rear = "" + HOUR;
+
+if (Period === "AM") {
+    rear += ' in the morning';
 }
-else if (PERIOD === "PM") {  
-    console.log(' in the evening'); 
+else if (Period === "PM") {
+    rear += ' in the evening';
 }
-else { 
-    console.log(" ??I don't understand period '" + PERIOD + "'.") ; 
+else {
+    rear += " ??I don't understand period '" + Period + "'." ;
 }
+console.log(front + rear);
